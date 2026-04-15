@@ -30,14 +30,17 @@ class Attendance(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 class Salary(db.Model):
+    __tablename__ = 'salary'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    id = db.Column(db.Integer, primary_key=True)
     employee_id = db.Column(db.Integer, db.ForeignKey('employees.id'), nullable=False)
     total_hours = db.Column(db.Float, default=0.0)
     hourly_rate = db.Column(db.Float, default=0.0)
     gross_salary = db.Column(db.Float, default=0.0)
+    period = db.Column(db.String(20), nullable=True)  # Format: 'YYYY-MM'
+    is_paid = db.Column(db.Boolean, default=False)  # Payment status
+    paid_at = db.Column(db.DateTime, nullable=True)  # When salary was marked as paid
     generated_at = db.Column(db.DateTime, default=datetime.utcnow)
-    period = db.Column(db.String(100)) 
     employee = db.relationship('Employee', backref='salaries')
+
 

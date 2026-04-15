@@ -1,4 +1,4 @@
--- select * from users
+select * from users
 -- select * from attendance
 -- select * from employees
-select * from salary
+-- select * from salary
